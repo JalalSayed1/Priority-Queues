@@ -14,6 +14,7 @@ public class MinPriorityQueueUsingArrays {
 
     /**
      * Build the min-heap using an array A.
+     * ! Takes O(n log n) time.
      * 
      * @param A array used to build the heap
      * @return the heap
@@ -21,13 +22,17 @@ public class MinPriorityQueueUsingArrays {
     private int[] buildMinHeap(int[] A) {
         int n = A.length;
         for (int i = ((n / 2) - 1); i >= 0; i--) {
-            minHeapify(A, i, n);
+            minHeapify(A, i, n); // O(log n)
         }
         return A;
     }
 
     /**
-     * To maintain the min-heap property on array A
+     * To maintain the min-heap property on array A.
+     * Properties:
+     * Root is the smallest element and
+     * children of a node are bigger than their parent.
+     * Takes O(log n) time.
      * 
      * @param A heap rep as array
      * @param i start index
@@ -109,7 +114,7 @@ public class MinPriorityQueueUsingArrays {
     public void insert(int x) {
         int[] A = new int[this.Q.length + 1];
 
-        for (int i = 0; i < this.Q.length; i++) {
+        for (int i = 0; i < this.Q.length; i++) { // O(n)
             A[i] = Q[i];
         }
         A[A.length - 1] = x;
@@ -122,6 +127,7 @@ public class MinPriorityQueueUsingArrays {
 
     /**
      * To find the min element in the queue.
+     * Takes O(1) time.
      * 
      * @return min element in the queue
      */
@@ -148,7 +154,7 @@ public class MinPriorityQueueUsingArrays {
         // }
 
         // remove the min and shift elts right:
-        for (int i = index; i < Q.length - 1; i++) {
+        for (int i = index; i < Q.length - 1; i++) { // O(n)
             this.Q[i] = this.Q[i + 1];
         }
         // fix the heap:

@@ -72,7 +72,15 @@ public class MinPriorityQueueUsingBST {
         }
     }
 
-    public void transplant(Node u, Node v) {
+    /**
+     * To move subtrees around when deleting a node.
+     * u's parent becomes v's parent.
+     * Therefore, u is no longer linked to any node.
+     * 
+     * @param u Node to be removed from tree
+     * @param v Chile node of u
+     */
+    private void transplant(Node u, Node v) {
         if (u.p == null) {
             root = v;
 
@@ -105,11 +113,11 @@ public class MinPriorityQueueUsingBST {
         } else if (z.right == null) {
             transplant(z, z.left);
 
-        } else {
-            Node y = this.min(z.right);
+        } else { // worst case if we hit this branch
+            Node y = min(z.right); // O(h)
 
             if (y.p != z) {
-                transplant(y, y.right);
+                transplant(y, y.right); // O(1)
                 y.right = z.right;
                 y.right.p = y;
             }
@@ -120,6 +128,7 @@ public class MinPriorityQueueUsingBST {
         }
     }
 
+    // ! delete?
     public int size(Node x) {
         if (x == null) {
             return 0;
@@ -127,9 +136,17 @@ public class MinPriorityQueueUsingBST {
         return size(x.left) + size(x.right) + 1;
     }
 
+    /**
+     * To find min element in tree with root node z then return it and remove it
+     * from the tree.
+     * Takes O(h) on tree with height h.
+     * 
+     * @param z Root node of the tree to be used to search for the min node key
+     * @return Node with min key
+     */
     public Node extractMin(Node z) {
-        Node x = min(z);
-        delete(x);
+        Node x = min(z); // O(h)
+        delete(x); // O(h)
         return x;
     }
 
