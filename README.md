@@ -18,6 +18,13 @@
   - `You are given n ropes of different lengths (expressed as integers), and you are asked to connect them to form a single rope with the minimum cost. The cost of connecting two ropes is equal to the sum of their lengths. `
 - Given a sequence of rope lengths, the expected outputs are a sequence of rope connection operations and the total cost.
 
+## How to use:
+By running Test.java or by making another file and adding a main method to it then run it as an application using either:
+
+Command line: `javac Test.java && java Test.java`
+
 ## What did I learn from this:
-- Using queues ADTs and how to implement them in Java.
--  
+- Using (min) priority queue ADTs and how to implement them in Java.
+- Time complexity of algorithms and recursive calls.
+- How to run some methods faster in terms of their running time by making other methods do extra work beforehand and store results in extra attributes.
+
