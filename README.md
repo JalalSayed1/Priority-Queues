@@ -21,8 +21,10 @@
 ## How to use:
 To run any of the .java files as an application using:
 
-Command line: `javac <FILENAME> && java <FILENAME>`
-eg. `javac Test.java && java Test.java`
+Command line:
+<br />
+&emsp; &emsp;
+      `javac <FILENAME> && java <FILENAME>`
 
 ## What did I learn from this:
 - Using (min) priority queue ADTs and how to implement them in Java.
