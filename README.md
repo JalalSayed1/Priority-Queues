@@ -19,9 +19,10 @@
 - Given a sequence of rope lengths, the expected outputs are a sequence of rope connection operations and the total cost.
 
 ## How to use:
-By running Test.java or by making another file and adding a main method to it then run it as an application using either:
+To run any of the .java files as an application using:
 
-Command line: `javac Test.java && java Test.java`
+Command line: `javac <FILENAME> && java <FILENAME>`
+eg. `javac Test.java && java Test.java`
 
 ## What did I learn from this:
 - Using (min) priority queue ADTs and how to implement them in Java.
