@@ -1,12 +1,13 @@
 
 public class MinPriorityQueueUsingBST {
 
-    private Node root; // root of BST
+    private Node root;
 
     private static class Node {
-        private int key; // sorted by key
+        private int key;
         private Node left, right, p;
-        private int size; // number of nodes
+        private int size;
+        private Node min; // to store the min node
 
         public Node(int key, int size) {
             this.key = key;
@@ -14,27 +15,12 @@ public class MinPriorityQueueUsingBST {
             this.left = null;
             this.right = null;
             this.p = null;
+            this.min = null;
         }
     }
 
     public MinPriorityQueueUsingBST() {
         root = null;
-    }
-
-    /**
-     * Find the min value in tree
-     * 
-     * @param x
-     *          Pointer to the root of the tree
-     * @return Leftmost node in tree
-     */
-    public Node min(Node x) {
-        // min value at the most left:
-        while (x.left != null) {
-            x = x.left;
-        }
-
-        return x;
     }
 
     /**
@@ -70,6 +56,88 @@ public class MinPriorityQueueUsingBST {
         } else {
             y.right = z;
         }
+    }
+
+    /**
+     * Insert node z into an appropriate position in tree T.
+     * After inserting z, we update each node's min attribute to make sure it keeps pointing to the correct min node in the tree/sub tree.
+     * Runs in O(n log n) on tree with height n.
+     * 
+     * @param T
+     *          A Binary Search Tree to insert z into
+     * @param z
+     *          Node to be inserted
+     */
+    public void insertAndStoreMin(Node z) {
+
+        // insert(z);
+        // Node minNode = min(this.root);
+        // // if one of the left or right children is not null, update min attribute:
+        // updateMinNode(this.root, minNode); // O(n log n)?
+
+        // minNode.left = null;
+        // minNode.right = null;
+        // // this will remove the min attribute if there is only 1 node in the tree at
+        // the
+        // // root:
+        // minNode.min = null;
+
+        insert(z);
+        updateMinNode(this.root); // ! O(n log n)?
+
+    }
+
+    /**
+     * 
+     * @param z   start node
+     * @param min min node
+     */
+    private void updateMinNode(Node z) { // , Node min
+        // z.min = min;
+        // if (z.right != null) {
+        // updateMinNode(z.right, min);
+        // }
+        // if (z.left != null) {
+        // updateMinNode(z.left, min);
+        // }
+
+        z.min = min(z);
+        if (z.right != null && z.left != null) {
+            updateMinNode(z.right);
+            updateMinNode(z.left);
+        } else if (z.right != null && z.left == null) {
+            updateMinNode(z.right);
+        } else if (z.right == null && z.left != null) {
+            updateMinNode(z.left);
+        }
+
+    }
+
+    /**
+     * Find the min value in tree.
+     * 
+     * @param x Pointer to the root/sub child of the tree
+     * @return min node in tree
+     */
+    public Node min(Node x) {
+        // min value at the most left:
+        while (x.left != null) {
+            x = x.left;
+        }
+
+        return x;
+    }
+
+    /**
+     * Find the min value in tree.
+     * It makes use of the min attribute in each node.
+     * 
+     * @param x Root/sub child node of the tree to be used to search for the min
+     *          node key
+     * @return min node in tree
+     */
+    public Node minEfficient(Node x) {
+        return x.min;
     }
 
     /**
@@ -141,13 +209,33 @@ public class MinPriorityQueueUsingBST {
      * from the tree.
      * Takes O(h) on tree with height h.
      * 
-     * @param z Root node of the tree to be used to search for the min node key
+     * @param z Root/sub child node of the tree to be used to search for the min
+     *          node key
      * @return Node with min key
      */
     public Node extractMin(Node z) {
         Node x = min(z); // O(h)
         delete(x); // O(h)
         return x;
+    }
+
+    /**
+     * To find min element in tree with root node z then return it and remove it
+     * from the tree.
+     * Make use of the min attribute in each node
+     * Takes O(1) on tree with height h.
+     * 
+     * @param z Root/sub child node of the tree to be used to extract min node after
+     *          in its left subtree
+     * @return Node with min key
+     */
+    public Node extractMinEfficient(Node z) {
+        Node m = z.min;
+        // as min node is well known, we do not need to use delete but instead we can
+        // directly use transplant:
+        transplant(z.min, null);
+        z.min = z.min.p; // new min is the parent of the current min node
+        return m;
     }
 
     public static void main(String[] args) {
@@ -157,16 +245,21 @@ public class MinPriorityQueueUsingBST {
         Node z2 = new Node(3, 4);
         Node z3 = new Node(2, 4);
         Node z4 = new Node(5, 4);
-        T.insert(z1);
-        T.insert(z2);
-        T.insert(z3);
-        T.insert(z4);
+        // T.insert(z1);
+        // T.insert(z2);
+        // T.insert(z3);
+        // T.insert(z4);
+        T.insertAndStoreMin(z1);
+        T.insertAndStoreMin(z2);
+        T.insertAndStoreMin(z3);
+        T.insertAndStoreMin(z4);
+        T.extractMinEfficient(z4);
 
         Node minMax;
         minMax = T.min(T.root);
 
-        T.extractMin(T.root);
-        T.extractMin(T.root);
-        T.extractMin(T.root);
+        // T.extractMin(T.root);
+        // T.extractMin(T.root);
+        // T.extractMin(T.root);
     }
 }
