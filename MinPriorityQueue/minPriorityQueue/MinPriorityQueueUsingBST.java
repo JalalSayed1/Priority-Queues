@@ -1,3 +1,4 @@
+package minPriorityQueue;
 
 public class MinPriorityQueueUsingBST {
 
@@ -60,7 +61,8 @@ public class MinPriorityQueueUsingBST {
 
     /**
      * Insert node z into an appropriate position in tree T.
-     * After inserting z, we update each node's min attribute to make sure it keeps pointing to the correct min node in the tree/sub tree.
+     * After inserting z, we update each node's min attribute to make sure it keeps
+     * pointing to the correct min node in the tree/sub tree.
      * Runs in O(n log n) on tree with height n.
      * 
      * @param T
