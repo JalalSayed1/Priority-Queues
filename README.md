@@ -25,10 +25,14 @@ To run any of the .java files as an application using:
 
 Command line:
 <br />
-&emsp; &emsp;
-      ```
-      javac <FILENAME> && java <FILENAME>
-      ```
+1.	Navigate to the project directory: `cd <directory>` 
+2.	Run the project: `javac <filename> && java <filename>`
+
+<br />
+
+NB: `<filename>` must include `.java`. E.g. `RopeProblem.java`
+
+<br />
 
 ## What did I learn from this:
 - Using (min) priority queue ADTs and how to implement them in Java.
