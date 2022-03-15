@@ -8,11 +8,21 @@ package minPriorityQueue;
  */
 public class RopeProblem {
 
-    public static int calculateCost(int[] ropes) {
-        int cost = 0;
+     
 
-        for (int i = 0; i < ropes.length; i++) {
-            cost += ropes[i];
+    public static int calculateCost(int[] ropes) {
+        MinPriorityQueueUsingArrays mpq = new MinPriorityQueueUsingArrays(ropes);
+
+        int cost = 0;
+        int joinedRope;
+
+        // until we have one rope in the queue, means all the ropes have been joined:
+        while (mpq.size() > 1) {
+            // extract the smallest 2 ropes:
+            joinedRope = mpq.extractMin() + mpq.extractMin();
+            cost += joinedRope;
+            // insert the new joined rope back to be re considered with the other ropes:
+            mpq.insert(joinedRope);
         }
 
         return cost;

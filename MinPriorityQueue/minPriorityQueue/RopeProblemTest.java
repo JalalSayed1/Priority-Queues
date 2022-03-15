@@ -11,7 +11,7 @@ public class RopeProblemTest {
     @Test
     public void testCalculateCostUnordered() {
         int[] ropes = { 4, 8, 3, 1, 6, 9, 12, 7, 2 };
-        assertEquals(52, RopeProblem.calculateCost(ropes));
+        assertEquals(153, RopeProblem.calculateCost(ropes));
     }
 
     @Test
@@ -19,6 +19,6 @@ public class RopeProblemTest {
         int[] ropes = { 4, 8, 3, 1, 6, 9, 12, 7, 2 };
         Arrays.sort(ropes);
         System.out.println(Arrays.toString(ropes));
-        assertEquals(52, RopeProblem.calculateCost(ropes));
+        assertEquals(153, RopeProblem.calculateCost(ropes));
     }
 }

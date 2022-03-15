@@ -164,6 +164,10 @@ public class MinPriorityQueueUsingArrays {
         return smallest;
     }
 
+    public int size() {
+        return this.Q.length;
+    }
+
     // ! delete?
     public String print() {
         String result = "";

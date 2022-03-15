@@ -14,7 +14,7 @@
 
 
 ## Part 2:
-- Implement an effiecient algorithm to solve the following problem:
+- Implement an efficient algorithm to solve the following problem:
 `You are given n ropes of different lengths (expressed as integers), and you are asked to connect them to form a single rope with the minimum cost. The cost of connecting two ropes is equal to the sum of their lengths. `
 - Given a sequence of rope lengths, the expected outputs are a sequence of rope connection operations and the total cost.
 
@@ -24,7 +24,9 @@ To run any of the .java files as an application using:
 Command line:
 <br />
 &emsp; &emsp;
-      `javac <FILENAME> && java <FILENAME>`
+      ```java
+      javac <FILENAME> && java <FILENAME>
+      ```
 
 ## What did I learn from this:
 - Using (min) priority queue ADTs and how to implement them in Java.
