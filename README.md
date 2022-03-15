@@ -26,7 +26,7 @@ To run any of the .java files as an application using:
 Command line:
 <br />
 &emsp; &emsp;
-      ```java
+      ```
       javac <FILENAME> && java <FILENAME>
       ```
 
