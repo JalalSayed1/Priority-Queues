@@ -72,43 +72,28 @@ public class MinPriorityQueueUsingBST {
      */
     public void insertAndStoreMin(Node z) {
 
-        // insert(z);
-        // Node minNode = min(this.root);
-        // // if one of the left or right children is not null, update min attribute:
-        // updateMinNode(this.root, minNode); // O(n log n)?
-
-        // minNode.left = null;
-        // minNode.right = null;
-        // // this will remove the min attribute if there is only 1 node in the tree at
-        // the
-        // // root:
-        // minNode.min = null;
-
-        insert(z);
-        updateMinNode(this.root); // ! O(n log n)?
+        insert(z); // O(h)
+        updateMinNode(this.root); // O(n)
 
     }
 
     /**
+     * Update every min attribute for every node.
+     * Takes O(n) for tree with n nodes.
      * 
-     * @param z   start node
-     * @param min min node
+     * @param z start node
      */
-    private void updateMinNode(Node z) { // , Node min
-        // z.min = min;
-        // if (z.right != null) {
-        // updateMinNode(z.right, min);
-        // }
-        // if (z.left != null) {
-        // updateMinNode(z.left, min);
-        // }
+    private void updateMinNode(Node z) {
 
-        z.min = min(z);
+        z.min = min(z); // O(h)
+
         if (z.right != null && z.left != null) {
             updateMinNode(z.right);
             updateMinNode(z.left);
+
         } else if (z.right != null && z.left == null) {
             updateMinNode(z.right);
+
         } else if (z.right == null && z.left != null) {
             updateMinNode(z.left);
         }
@@ -117,6 +102,7 @@ public class MinPriorityQueueUsingBST {
 
     /**
      * Find the min value in tree.
+     * Takes O(h)
      * 
      * @param x Pointer to the root/sub child of the tree
      * @return min node in tree
@@ -198,14 +184,6 @@ public class MinPriorityQueueUsingBST {
         }
     }
 
-    // ! delete?
-    public int size(Node x) {
-        if (x == null) {
-            return 0;
-        }
-        return size(x.left) + size(x.right) + 1;
-    }
-
     /**
      * To find min element in tree with root node z then return it and remove it
      * from the tree.
@@ -261,7 +239,6 @@ public class MinPriorityQueueUsingBST {
         minMax = T.min(T.root);
 
         // T.extractMin(T.root);
-        // T.extractMin(T.root);
-        // T.extractMin(T.root);
+        
     }
 }

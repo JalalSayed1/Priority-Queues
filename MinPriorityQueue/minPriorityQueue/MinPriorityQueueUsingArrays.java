@@ -16,7 +16,7 @@ public class MinPriorityQueueUsingArrays {
 
     /**
      * Build the min-heap using an array A.
-     * ! Takes O(n log n) time.
+     * Takes O(n log n) time.
      * 
      * @param A array used to build the heap
      * @return the heap
@@ -95,19 +95,6 @@ public class MinPriorityQueueUsingArrays {
         return (2 * i) + 2;
     }
 
-    // ! delete?
-    // private void heapSort(int[] A) {
-    // buildMinHeap(A);
-    // int s = A.length;
-    // int n = A.length;
-
-    // for (int i = n - 1; i > 0; i--) {
-    // swap(A, 0, i);
-    // s -= 1;
-    // minHeapify(A, 0, s);
-    // }
-    // }
-
     /**
      * Insert element x at the correct position in the queue.
      * 
@@ -123,8 +110,6 @@ public class MinPriorityQueueUsingArrays {
 
         // re build the heap:
         this.Q = buildMinHeap(A);
-        // heapSort(Q);
-        // buildMinHeap(Q);
     }
 
     /**
@@ -148,13 +133,6 @@ public class MinPriorityQueueUsingArrays {
         int index = 0;// this.Q.length - 1;
         int smallest = this.Q[index];
 
-        // for (int i = 0; i < this.Q.length; i++) {
-        // if (smallest > this.Q[i]) {
-        // smallest = this.Q[i];
-        // index = i;
-        // }
-        // }
-
         // remove the min and shift elts right:
         for (int i = index; i < Q.length - 1; i++) { // O(n)
             this.Q[i] = this.Q[i + 1];
@@ -168,54 +146,16 @@ public class MinPriorityQueueUsingArrays {
         return this.Q.length;
     }
 
-    // ! delete?
-    public String print() {
-        String result = "";
-        for (int i = 0; i < this.Q.length; i++) {
-            System.out.print(this.Q[i] + " ");
-            result += this.Q[i] + " ";
-        }
-        System.out.println();
-        // take last "space" char out:
-        result = result.substring(0, result.length() - 1);
-        return result;
-    }
-
-    private boolean checkQueue() {
-        for (int i = 1; i < (this.Q.length / 2); i++) {
-            if (i % 2 == 0) { // EVEN
-                if (this.Q[i] > this.Q[(i / 2) - 1]) {
-                    return false;
-                }
-            } else { // ODD
-                if (this.Q[i] > this.Q[i / 2]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public static void main(String[] args) {
-        boolean t;
+
         int[] A = { 15, 10, 8, 6, 4, 1, 4, 5, 2, 1, 3 };
-        // int[] B = { 3, 9, 2, 1, 4, 5 };
 
         MinPriorityQueueUsingArrays q = new MinPriorityQueueUsingArrays(A);
-        q.print();
-        t = q.checkQueue();
-        // q.maxHeapify(A, 0, q.Q.length);
 
-        // q.insert(17);
-        // t = q.checkQueue();
-        // q.print();
-        // q.insert(18);
-        // t = q.checkQueue();
-        // System.out.println(q.print().equals("18 10 17 6 4 15 4 5 2 1 3 1 8"));
-
+        q.insert(17);
+        q.insert(18);
         int min = q.min();
         min = q.extractMin();
-        q.print();
 
     }
 }
